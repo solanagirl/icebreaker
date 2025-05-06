@@ -34,11 +34,6 @@ export type UserSession = $Result.DefaultSelection<Prisma.$UserSessionPayload>
  */
 export type Game = $Result.DefaultSelection<Prisma.$GamePayload>
 /**
- * Model GameConfig
- * 
- */
-export type GameConfig = $Result.DefaultSelection<Prisma.$GameConfigPayload>
-/**
  * Model Task
  * 
  */
@@ -347,16 +342,6 @@ export class PrismaClient<
     * ```
     */
   get game(): Prisma.GameDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.gameConfig`: Exposes CRUD operations for the **GameConfig** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more GameConfigs
-    * const gameConfigs = await prisma.gameConfig.findMany()
-    * ```
-    */
-  get gameConfig(): Prisma.GameConfigDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.task`: Exposes CRUD operations for the **Task** model.
@@ -921,7 +906,6 @@ export namespace Prisma {
     EmailRecord: 'EmailRecord',
     UserSession: 'UserSession',
     Game: 'Game',
-    GameConfig: 'GameConfig',
     Task: 'Task',
     TaskConfig: 'TaskConfig',
     TaskSelection: 'TaskSelection',
@@ -952,7 +936,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "event" | "emailRecord" | "userSession" | "game" | "gameConfig" | "task" | "taskConfig" | "taskSelection" | "taskResult" | "taskSubmission" | "voteContent" | "voteItem" | "voteSubmission" | "predictionRound" | "predictionConfig" | "predictionQuestion" | "predictionResult"
+      modelProps: "event" | "emailRecord" | "userSession" | "game" | "task" | "taskConfig" | "taskSelection" | "taskResult" | "taskSubmission" | "voteContent" | "voteItem" | "voteSubmission" | "predictionRound" | "predictionConfig" | "predictionQuestion" | "predictionResult"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1249,80 +1233,6 @@ export namespace Prisma {
           count: {
             args: Prisma.GameCountArgs<ExtArgs>
             result: $Utils.Optional<GameCountAggregateOutputType> | number
-          }
-        }
-      }
-      GameConfig: {
-        payload: Prisma.$GameConfigPayload<ExtArgs>
-        fields: Prisma.GameConfigFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.GameConfigFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GameConfigPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.GameConfigFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GameConfigPayload>
-          }
-          findFirst: {
-            args: Prisma.GameConfigFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GameConfigPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.GameConfigFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GameConfigPayload>
-          }
-          findMany: {
-            args: Prisma.GameConfigFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GameConfigPayload>[]
-          }
-          create: {
-            args: Prisma.GameConfigCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GameConfigPayload>
-          }
-          createMany: {
-            args: Prisma.GameConfigCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.GameConfigCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GameConfigPayload>[]
-          }
-          delete: {
-            args: Prisma.GameConfigDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GameConfigPayload>
-          }
-          update: {
-            args: Prisma.GameConfigUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GameConfigPayload>
-          }
-          deleteMany: {
-            args: Prisma.GameConfigDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.GameConfigUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.GameConfigUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GameConfigPayload>[]
-          }
-          upsert: {
-            args: Prisma.GameConfigUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GameConfigPayload>
-          }
-          aggregate: {
-            args: Prisma.GameConfigAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateGameConfig>
-          }
-          groupBy: {
-            args: Prisma.GameConfigGroupByArgs<ExtArgs>
-            result: $Utils.Optional<GameConfigGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.GameConfigCountArgs<ExtArgs>
-            result: $Utils.Optional<GameConfigCountAggregateOutputType> | number
           }
         }
       }
@@ -2302,7 +2212,6 @@ export namespace Prisma {
     emailRecord?: EmailRecordOmit
     userSession?: UserSessionOmit
     game?: GameOmit
-    gameConfig?: GameConfigOmit
     task?: TaskOmit
     taskConfig?: TaskConfigOmit
     taskSelection?: TaskSelectionOmit
@@ -2592,37 +2501,6 @@ export namespace Prisma {
 
 
   /**
-   * Count Type GameConfigCountOutputType
-   */
-
-  export type GameConfigCountOutputType = {
-    Games: number
-  }
-
-  export type GameConfigCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Games?: boolean | GameConfigCountOutputTypeCountGamesArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * GameConfigCountOutputType without action
-   */
-  export type GameConfigCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GameConfigCountOutputType
-     */
-    select?: GameConfigCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * GameConfigCountOutputType without action
-   */
-  export type GameConfigCountOutputTypeCountGamesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: GameWhereInput
-  }
-
-
-  /**
    * Count Type TaskCountOutputType
    */
 
@@ -2896,16 +2774,22 @@ export namespace Prisma {
   export type EventMinAggregateOutputType = {
     id: string | null
     link: string | null
+    startTime: Date | null
+    endTime: Date | null
   }
 
   export type EventMaxAggregateOutputType = {
     id: string | null
     link: string | null
+    startTime: Date | null
+    endTime: Date | null
   }
 
   export type EventCountAggregateOutputType = {
     id: number
     link: number
+    startTime: number
+    endTime: number
     _all: number
   }
 
@@ -2913,16 +2797,22 @@ export namespace Prisma {
   export type EventMinAggregateInputType = {
     id?: true
     link?: true
+    startTime?: true
+    endTime?: true
   }
 
   export type EventMaxAggregateInputType = {
     id?: true
     link?: true
+    startTime?: true
+    endTime?: true
   }
 
   export type EventCountAggregateInputType = {
     id?: true
     link?: true
+    startTime?: true
+    endTime?: true
     _all?: true
   }
 
@@ -3001,6 +2891,8 @@ export namespace Prisma {
   export type EventGroupByOutputType = {
     id: string
     link: string | null
+    startTime: Date
+    endTime: Date
     _count: EventCountAggregateOutputType | null
     _min: EventMinAggregateOutputType | null
     _max: EventMaxAggregateOutputType | null
@@ -3023,6 +2915,8 @@ export namespace Prisma {
   export type EventSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     link?: boolean
+    startTime?: boolean
+    endTime?: boolean
     attendees?: boolean | Event$attendeesArgs<ExtArgs>
     game?: boolean | Event$gameArgs<ExtArgs>
     _count?: boolean | EventCountOutputTypeDefaultArgs<ExtArgs>
@@ -3031,19 +2925,25 @@ export namespace Prisma {
   export type EventSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     link?: boolean
+    startTime?: boolean
+    endTime?: boolean
   }, ExtArgs["result"]["event"]>
 
   export type EventSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     link?: boolean
+    startTime?: boolean
+    endTime?: boolean
   }, ExtArgs["result"]["event"]>
 
   export type EventSelectScalar = {
     id?: boolean
     link?: boolean
+    startTime?: boolean
+    endTime?: boolean
   }
 
-  export type EventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "link", ExtArgs["result"]["event"]>
+  export type EventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "link" | "startTime" | "endTime", ExtArgs["result"]["event"]>
   export type EventInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     attendees?: boolean | Event$attendeesArgs<ExtArgs>
     game?: boolean | Event$gameArgs<ExtArgs>
@@ -3061,6 +2961,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       link: string | null
+      startTime: Date
+      endTime: Date
     }, ExtArgs["result"]["event"]>
     composites: {}
   }
@@ -3488,6 +3390,8 @@ export namespace Prisma {
   interface EventFieldRefs {
     readonly id: FieldRef<"Event", 'String'>
     readonly link: FieldRef<"Event", 'String'>
+    readonly startTime: FieldRef<"Event", 'DateTime'>
+    readonly endTime: FieldRef<"Event", 'DateTime'>
   }
     
 
@@ -3706,7 +3610,7 @@ export namespace Prisma {
     /**
      * The data needed to create a Event.
      */
-    data?: XOR<EventCreateInput, EventUncheckedCreateInput>
+    data: XOR<EventCreateInput, EventUncheckedCreateInput>
   }
 
   /**
@@ -6218,60 +6122,60 @@ export namespace Prisma {
 
   export type GameAvgAggregateOutputType = {
     id: number | null
-    configId: number | null
+    duration: number | null
   }
 
   export type GameSumAggregateOutputType = {
     id: number | null
-    configId: number | null
+    duration: number | null
   }
 
   export type GameMinAggregateOutputType = {
     id: number | null
+    duration: number | null
     eventId: string | null
-    configId: number | null
   }
 
   export type GameMaxAggregateOutputType = {
     id: number | null
+    duration: number | null
     eventId: string | null
-    configId: number | null
   }
 
   export type GameCountAggregateOutputType = {
     id: number
+    duration: number
     eventId: number
-    configId: number
     _all: number
   }
 
 
   export type GameAvgAggregateInputType = {
     id?: true
-    configId?: true
+    duration?: true
   }
 
   export type GameSumAggregateInputType = {
     id?: true
-    configId?: true
+    duration?: true
   }
 
   export type GameMinAggregateInputType = {
     id?: true
+    duration?: true
     eventId?: true
-    configId?: true
   }
 
   export type GameMaxAggregateInputType = {
     id?: true
+    duration?: true
     eventId?: true
-    configId?: true
   }
 
   export type GameCountAggregateInputType = {
     id?: true
+    duration?: true
     eventId?: true
-    configId?: true
     _all?: true
   }
 
@@ -6363,8 +6267,8 @@ export namespace Prisma {
 
   export type GameGroupByOutputType = {
     id: number
+    duration: number
     eventId: string
-    configId: number
     _count: GameCountAggregateOutputType | null
     _avg: GameAvgAggregateOutputType | null
     _sum: GameSumAggregateOutputType | null
@@ -6388,10 +6292,9 @@ export namespace Prisma {
 
   export type GameSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    duration?: boolean
     eventId?: boolean
-    configId?: boolean
     event?: boolean | EventDefaultArgs<ExtArgs>
-    config?: boolean | GameConfigDefaultArgs<ExtArgs>
     playerSessions?: boolean | Game$playerSessionsArgs<ExtArgs>
     tasks?: boolean | Game$tasksArgs<ExtArgs>
     taskResult?: boolean | Game$taskResultArgs<ExtArgs>
@@ -6401,30 +6304,27 @@ export namespace Prisma {
 
   export type GameSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    duration?: boolean
     eventId?: boolean
-    configId?: boolean
     event?: boolean | EventDefaultArgs<ExtArgs>
-    config?: boolean | GameConfigDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["game"]>
 
   export type GameSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    duration?: boolean
     eventId?: boolean
-    configId?: boolean
     event?: boolean | EventDefaultArgs<ExtArgs>
-    config?: boolean | GameConfigDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["game"]>
 
   export type GameSelectScalar = {
     id?: boolean
+    duration?: boolean
     eventId?: boolean
-    configId?: boolean
   }
 
-  export type GameOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "eventId" | "configId", ExtArgs["result"]["game"]>
+  export type GameOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "duration" | "eventId", ExtArgs["result"]["game"]>
   export type GameInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     event?: boolean | EventDefaultArgs<ExtArgs>
-    config?: boolean | GameConfigDefaultArgs<ExtArgs>
     playerSessions?: boolean | Game$playerSessionsArgs<ExtArgs>
     tasks?: boolean | Game$tasksArgs<ExtArgs>
     taskResult?: boolean | Game$taskResultArgs<ExtArgs>
@@ -6433,18 +6333,15 @@ export namespace Prisma {
   }
   export type GameIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     event?: boolean | EventDefaultArgs<ExtArgs>
-    config?: boolean | GameConfigDefaultArgs<ExtArgs>
   }
   export type GameIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     event?: boolean | EventDefaultArgs<ExtArgs>
-    config?: boolean | GameConfigDefaultArgs<ExtArgs>
   }
 
   export type $GamePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Game"
     objects: {
       event: Prisma.$EventPayload<ExtArgs>
-      config: Prisma.$GameConfigPayload<ExtArgs>
       playerSessions: Prisma.$UserSessionPayload<ExtArgs>[]
       tasks: Prisma.$TaskSelectionPayload<ExtArgs>[]
       taskResult: Prisma.$TaskResultPayload<ExtArgs>[]
@@ -6452,8 +6349,8 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      duration: number
       eventId: string
-      configId: number
     }, ExtArgs["result"]["game"]>
     composites: {}
   }
@@ -6849,7 +6746,6 @@ export namespace Prisma {
   export interface Prisma__GameClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     event<T extends EventDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EventDefaultArgs<ExtArgs>>): Prisma__EventClient<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    config<T extends GameConfigDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GameConfigDefaultArgs<ExtArgs>>): Prisma__GameConfigClient<$Result.GetResult<Prisma.$GameConfigPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     playerSessions<T extends Game$playerSessionsArgs<ExtArgs> = {}>(args?: Subset<T, Game$playerSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     tasks<T extends Game$tasksArgs<ExtArgs> = {}>(args?: Subset<T, Game$tasksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskSelectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     taskResult<T extends Game$taskResultArgs<ExtArgs> = {}>(args?: Subset<T, Game$taskResultArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -6884,8 +6780,8 @@ export namespace Prisma {
    */
   interface GameFieldRefs {
     readonly id: FieldRef<"Game", 'Int'>
+    readonly duration: FieldRef<"Game", 'Int'>
     readonly eventId: FieldRef<"Game", 'String'>
-    readonly configId: FieldRef<"Game", 'Int'>
   }
     
 
@@ -7393,1071 +7289,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: GameInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model GameConfig
-   */
-
-  export type AggregateGameConfig = {
-    _count: GameConfigCountAggregateOutputType | null
-    _avg: GameConfigAvgAggregateOutputType | null
-    _sum: GameConfigSumAggregateOutputType | null
-    _min: GameConfigMinAggregateOutputType | null
-    _max: GameConfigMaxAggregateOutputType | null
-  }
-
-  export type GameConfigAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type GameConfigSumAggregateOutputType = {
-    id: number | null
-  }
-
-  export type GameConfigMinAggregateOutputType = {
-    id: number | null
-    duration: Date | null
-  }
-
-  export type GameConfigMaxAggregateOutputType = {
-    id: number | null
-    duration: Date | null
-  }
-
-  export type GameConfigCountAggregateOutputType = {
-    id: number
-    duration: number
-    _all: number
-  }
-
-
-  export type GameConfigAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type GameConfigSumAggregateInputType = {
-    id?: true
-  }
-
-  export type GameConfigMinAggregateInputType = {
-    id?: true
-    duration?: true
-  }
-
-  export type GameConfigMaxAggregateInputType = {
-    id?: true
-    duration?: true
-  }
-
-  export type GameConfigCountAggregateInputType = {
-    id?: true
-    duration?: true
-    _all?: true
-  }
-
-  export type GameConfigAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which GameConfig to aggregate.
-     */
-    where?: GameConfigWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of GameConfigs to fetch.
-     */
-    orderBy?: GameConfigOrderByWithRelationInput | GameConfigOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: GameConfigWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` GameConfigs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` GameConfigs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned GameConfigs
-    **/
-    _count?: true | GameConfigCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: GameConfigAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: GameConfigSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: GameConfigMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: GameConfigMaxAggregateInputType
-  }
-
-  export type GetGameConfigAggregateType<T extends GameConfigAggregateArgs> = {
-        [P in keyof T & keyof AggregateGameConfig]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateGameConfig[P]>
-      : GetScalarType<T[P], AggregateGameConfig[P]>
-  }
-
-
-
-
-  export type GameConfigGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: GameConfigWhereInput
-    orderBy?: GameConfigOrderByWithAggregationInput | GameConfigOrderByWithAggregationInput[]
-    by: GameConfigScalarFieldEnum[] | GameConfigScalarFieldEnum
-    having?: GameConfigScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: GameConfigCountAggregateInputType | true
-    _avg?: GameConfigAvgAggregateInputType
-    _sum?: GameConfigSumAggregateInputType
-    _min?: GameConfigMinAggregateInputType
-    _max?: GameConfigMaxAggregateInputType
-  }
-
-  export type GameConfigGroupByOutputType = {
-    id: number
-    duration: Date
-    _count: GameConfigCountAggregateOutputType | null
-    _avg: GameConfigAvgAggregateOutputType | null
-    _sum: GameConfigSumAggregateOutputType | null
-    _min: GameConfigMinAggregateOutputType | null
-    _max: GameConfigMaxAggregateOutputType | null
-  }
-
-  type GetGameConfigGroupByPayload<T extends GameConfigGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<GameConfigGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof GameConfigGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], GameConfigGroupByOutputType[P]>
-            : GetScalarType<T[P], GameConfigGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type GameConfigSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    duration?: boolean
-    Games?: boolean | GameConfig$GamesArgs<ExtArgs>
-    _count?: boolean | GameConfigCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["gameConfig"]>
-
-  export type GameConfigSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    duration?: boolean
-  }, ExtArgs["result"]["gameConfig"]>
-
-  export type GameConfigSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    duration?: boolean
-  }, ExtArgs["result"]["gameConfig"]>
-
-  export type GameConfigSelectScalar = {
-    id?: boolean
-    duration?: boolean
-  }
-
-  export type GameConfigOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "duration", ExtArgs["result"]["gameConfig"]>
-  export type GameConfigInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Games?: boolean | GameConfig$GamesArgs<ExtArgs>
-    _count?: boolean | GameConfigCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type GameConfigIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type GameConfigIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-
-  export type $GameConfigPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "GameConfig"
-    objects: {
-      Games: Prisma.$GamePayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      duration: Date
-    }, ExtArgs["result"]["gameConfig"]>
-    composites: {}
-  }
-
-  type GameConfigGetPayload<S extends boolean | null | undefined | GameConfigDefaultArgs> = $Result.GetResult<Prisma.$GameConfigPayload, S>
-
-  type GameConfigCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<GameConfigFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: GameConfigCountAggregateInputType | true
-    }
-
-  export interface GameConfigDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GameConfig'], meta: { name: 'GameConfig' } }
-    /**
-     * Find zero or one GameConfig that matches the filter.
-     * @param {GameConfigFindUniqueArgs} args - Arguments to find a GameConfig
-     * @example
-     * // Get one GameConfig
-     * const gameConfig = await prisma.gameConfig.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends GameConfigFindUniqueArgs>(args: SelectSubset<T, GameConfigFindUniqueArgs<ExtArgs>>): Prisma__GameConfigClient<$Result.GetResult<Prisma.$GameConfigPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one GameConfig that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {GameConfigFindUniqueOrThrowArgs} args - Arguments to find a GameConfig
-     * @example
-     * // Get one GameConfig
-     * const gameConfig = await prisma.gameConfig.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends GameConfigFindUniqueOrThrowArgs>(args: SelectSubset<T, GameConfigFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GameConfigClient<$Result.GetResult<Prisma.$GameConfigPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first GameConfig that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GameConfigFindFirstArgs} args - Arguments to find a GameConfig
-     * @example
-     * // Get one GameConfig
-     * const gameConfig = await prisma.gameConfig.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends GameConfigFindFirstArgs>(args?: SelectSubset<T, GameConfigFindFirstArgs<ExtArgs>>): Prisma__GameConfigClient<$Result.GetResult<Prisma.$GameConfigPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first GameConfig that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GameConfigFindFirstOrThrowArgs} args - Arguments to find a GameConfig
-     * @example
-     * // Get one GameConfig
-     * const gameConfig = await prisma.gameConfig.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends GameConfigFindFirstOrThrowArgs>(args?: SelectSubset<T, GameConfigFindFirstOrThrowArgs<ExtArgs>>): Prisma__GameConfigClient<$Result.GetResult<Prisma.$GameConfigPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more GameConfigs that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GameConfigFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all GameConfigs
-     * const gameConfigs = await prisma.gameConfig.findMany()
-     * 
-     * // Get first 10 GameConfigs
-     * const gameConfigs = await prisma.gameConfig.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const gameConfigWithIdOnly = await prisma.gameConfig.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends GameConfigFindManyArgs>(args?: SelectSubset<T, GameConfigFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GameConfigPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a GameConfig.
-     * @param {GameConfigCreateArgs} args - Arguments to create a GameConfig.
-     * @example
-     * // Create one GameConfig
-     * const GameConfig = await prisma.gameConfig.create({
-     *   data: {
-     *     // ... data to create a GameConfig
-     *   }
-     * })
-     * 
-     */
-    create<T extends GameConfigCreateArgs>(args: SelectSubset<T, GameConfigCreateArgs<ExtArgs>>): Prisma__GameConfigClient<$Result.GetResult<Prisma.$GameConfigPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many GameConfigs.
-     * @param {GameConfigCreateManyArgs} args - Arguments to create many GameConfigs.
-     * @example
-     * // Create many GameConfigs
-     * const gameConfig = await prisma.gameConfig.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends GameConfigCreateManyArgs>(args?: SelectSubset<T, GameConfigCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many GameConfigs and returns the data saved in the database.
-     * @param {GameConfigCreateManyAndReturnArgs} args - Arguments to create many GameConfigs.
-     * @example
-     * // Create many GameConfigs
-     * const gameConfig = await prisma.gameConfig.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many GameConfigs and only return the `id`
-     * const gameConfigWithIdOnly = await prisma.gameConfig.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends GameConfigCreateManyAndReturnArgs>(args?: SelectSubset<T, GameConfigCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GameConfigPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a GameConfig.
-     * @param {GameConfigDeleteArgs} args - Arguments to delete one GameConfig.
-     * @example
-     * // Delete one GameConfig
-     * const GameConfig = await prisma.gameConfig.delete({
-     *   where: {
-     *     // ... filter to delete one GameConfig
-     *   }
-     * })
-     * 
-     */
-    delete<T extends GameConfigDeleteArgs>(args: SelectSubset<T, GameConfigDeleteArgs<ExtArgs>>): Prisma__GameConfigClient<$Result.GetResult<Prisma.$GameConfigPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one GameConfig.
-     * @param {GameConfigUpdateArgs} args - Arguments to update one GameConfig.
-     * @example
-     * // Update one GameConfig
-     * const gameConfig = await prisma.gameConfig.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends GameConfigUpdateArgs>(args: SelectSubset<T, GameConfigUpdateArgs<ExtArgs>>): Prisma__GameConfigClient<$Result.GetResult<Prisma.$GameConfigPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more GameConfigs.
-     * @param {GameConfigDeleteManyArgs} args - Arguments to filter GameConfigs to delete.
-     * @example
-     * // Delete a few GameConfigs
-     * const { count } = await prisma.gameConfig.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends GameConfigDeleteManyArgs>(args?: SelectSubset<T, GameConfigDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more GameConfigs.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GameConfigUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many GameConfigs
-     * const gameConfig = await prisma.gameConfig.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends GameConfigUpdateManyArgs>(args: SelectSubset<T, GameConfigUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more GameConfigs and returns the data updated in the database.
-     * @param {GameConfigUpdateManyAndReturnArgs} args - Arguments to update many GameConfigs.
-     * @example
-     * // Update many GameConfigs
-     * const gameConfig = await prisma.gameConfig.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more GameConfigs and only return the `id`
-     * const gameConfigWithIdOnly = await prisma.gameConfig.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends GameConfigUpdateManyAndReturnArgs>(args: SelectSubset<T, GameConfigUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GameConfigPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one GameConfig.
-     * @param {GameConfigUpsertArgs} args - Arguments to update or create a GameConfig.
-     * @example
-     * // Update or create a GameConfig
-     * const gameConfig = await prisma.gameConfig.upsert({
-     *   create: {
-     *     // ... data to create a GameConfig
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the GameConfig we want to update
-     *   }
-     * })
-     */
-    upsert<T extends GameConfigUpsertArgs>(args: SelectSubset<T, GameConfigUpsertArgs<ExtArgs>>): Prisma__GameConfigClient<$Result.GetResult<Prisma.$GameConfigPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of GameConfigs.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GameConfigCountArgs} args - Arguments to filter GameConfigs to count.
-     * @example
-     * // Count the number of GameConfigs
-     * const count = await prisma.gameConfig.count({
-     *   where: {
-     *     // ... the filter for the GameConfigs we want to count
-     *   }
-     * })
-    **/
-    count<T extends GameConfigCountArgs>(
-      args?: Subset<T, GameConfigCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], GameConfigCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a GameConfig.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GameConfigAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends GameConfigAggregateArgs>(args: Subset<T, GameConfigAggregateArgs>): Prisma.PrismaPromise<GetGameConfigAggregateType<T>>
-
-    /**
-     * Group by GameConfig.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GameConfigGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends GameConfigGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: GameConfigGroupByArgs['orderBy'] }
-        : { orderBy?: GameConfigGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, GameConfigGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGameConfigGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the GameConfig model
-   */
-  readonly fields: GameConfigFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for GameConfig.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__GameConfigClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    Games<T extends GameConfig$GamesArgs<ExtArgs> = {}>(args?: Subset<T, GameConfig$GamesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the GameConfig model
-   */
-  interface GameConfigFieldRefs {
-    readonly id: FieldRef<"GameConfig", 'Int'>
-    readonly duration: FieldRef<"GameConfig", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * GameConfig findUnique
-   */
-  export type GameConfigFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GameConfig
-     */
-    select?: GameConfigSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GameConfig
-     */
-    omit?: GameConfigOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GameConfigInclude<ExtArgs> | null
-    /**
-     * Filter, which GameConfig to fetch.
-     */
-    where: GameConfigWhereUniqueInput
-  }
-
-  /**
-   * GameConfig findUniqueOrThrow
-   */
-  export type GameConfigFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GameConfig
-     */
-    select?: GameConfigSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GameConfig
-     */
-    omit?: GameConfigOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GameConfigInclude<ExtArgs> | null
-    /**
-     * Filter, which GameConfig to fetch.
-     */
-    where: GameConfigWhereUniqueInput
-  }
-
-  /**
-   * GameConfig findFirst
-   */
-  export type GameConfigFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GameConfig
-     */
-    select?: GameConfigSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GameConfig
-     */
-    omit?: GameConfigOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GameConfigInclude<ExtArgs> | null
-    /**
-     * Filter, which GameConfig to fetch.
-     */
-    where?: GameConfigWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of GameConfigs to fetch.
-     */
-    orderBy?: GameConfigOrderByWithRelationInput | GameConfigOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for GameConfigs.
-     */
-    cursor?: GameConfigWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` GameConfigs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` GameConfigs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of GameConfigs.
-     */
-    distinct?: GameConfigScalarFieldEnum | GameConfigScalarFieldEnum[]
-  }
-
-  /**
-   * GameConfig findFirstOrThrow
-   */
-  export type GameConfigFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GameConfig
-     */
-    select?: GameConfigSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GameConfig
-     */
-    omit?: GameConfigOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GameConfigInclude<ExtArgs> | null
-    /**
-     * Filter, which GameConfig to fetch.
-     */
-    where?: GameConfigWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of GameConfigs to fetch.
-     */
-    orderBy?: GameConfigOrderByWithRelationInput | GameConfigOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for GameConfigs.
-     */
-    cursor?: GameConfigWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` GameConfigs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` GameConfigs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of GameConfigs.
-     */
-    distinct?: GameConfigScalarFieldEnum | GameConfigScalarFieldEnum[]
-  }
-
-  /**
-   * GameConfig findMany
-   */
-  export type GameConfigFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GameConfig
-     */
-    select?: GameConfigSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GameConfig
-     */
-    omit?: GameConfigOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GameConfigInclude<ExtArgs> | null
-    /**
-     * Filter, which GameConfigs to fetch.
-     */
-    where?: GameConfigWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of GameConfigs to fetch.
-     */
-    orderBy?: GameConfigOrderByWithRelationInput | GameConfigOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing GameConfigs.
-     */
-    cursor?: GameConfigWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` GameConfigs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` GameConfigs.
-     */
-    skip?: number
-    distinct?: GameConfigScalarFieldEnum | GameConfigScalarFieldEnum[]
-  }
-
-  /**
-   * GameConfig create
-   */
-  export type GameConfigCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GameConfig
-     */
-    select?: GameConfigSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GameConfig
-     */
-    omit?: GameConfigOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GameConfigInclude<ExtArgs> | null
-    /**
-     * The data needed to create a GameConfig.
-     */
-    data: XOR<GameConfigCreateInput, GameConfigUncheckedCreateInput>
-  }
-
-  /**
-   * GameConfig createMany
-   */
-  export type GameConfigCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many GameConfigs.
-     */
-    data: GameConfigCreateManyInput | GameConfigCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * GameConfig createManyAndReturn
-   */
-  export type GameConfigCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GameConfig
-     */
-    select?: GameConfigSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the GameConfig
-     */
-    omit?: GameConfigOmit<ExtArgs> | null
-    /**
-     * The data used to create many GameConfigs.
-     */
-    data: GameConfigCreateManyInput | GameConfigCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * GameConfig update
-   */
-  export type GameConfigUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GameConfig
-     */
-    select?: GameConfigSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GameConfig
-     */
-    omit?: GameConfigOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GameConfigInclude<ExtArgs> | null
-    /**
-     * The data needed to update a GameConfig.
-     */
-    data: XOR<GameConfigUpdateInput, GameConfigUncheckedUpdateInput>
-    /**
-     * Choose, which GameConfig to update.
-     */
-    where: GameConfigWhereUniqueInput
-  }
-
-  /**
-   * GameConfig updateMany
-   */
-  export type GameConfigUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update GameConfigs.
-     */
-    data: XOR<GameConfigUpdateManyMutationInput, GameConfigUncheckedUpdateManyInput>
-    /**
-     * Filter which GameConfigs to update
-     */
-    where?: GameConfigWhereInput
-    /**
-     * Limit how many GameConfigs to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * GameConfig updateManyAndReturn
-   */
-  export type GameConfigUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GameConfig
-     */
-    select?: GameConfigSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the GameConfig
-     */
-    omit?: GameConfigOmit<ExtArgs> | null
-    /**
-     * The data used to update GameConfigs.
-     */
-    data: XOR<GameConfigUpdateManyMutationInput, GameConfigUncheckedUpdateManyInput>
-    /**
-     * Filter which GameConfigs to update
-     */
-    where?: GameConfigWhereInput
-    /**
-     * Limit how many GameConfigs to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * GameConfig upsert
-   */
-  export type GameConfigUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GameConfig
-     */
-    select?: GameConfigSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GameConfig
-     */
-    omit?: GameConfigOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GameConfigInclude<ExtArgs> | null
-    /**
-     * The filter to search for the GameConfig to update in case it exists.
-     */
-    where: GameConfigWhereUniqueInput
-    /**
-     * In case the GameConfig found by the `where` argument doesn't exist, create a new GameConfig with this data.
-     */
-    create: XOR<GameConfigCreateInput, GameConfigUncheckedCreateInput>
-    /**
-     * In case the GameConfig was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<GameConfigUpdateInput, GameConfigUncheckedUpdateInput>
-  }
-
-  /**
-   * GameConfig delete
-   */
-  export type GameConfigDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GameConfig
-     */
-    select?: GameConfigSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GameConfig
-     */
-    omit?: GameConfigOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GameConfigInclude<ExtArgs> | null
-    /**
-     * Filter which GameConfig to delete.
-     */
-    where: GameConfigWhereUniqueInput
-  }
-
-  /**
-   * GameConfig deleteMany
-   */
-  export type GameConfigDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which GameConfigs to delete
-     */
-    where?: GameConfigWhereInput
-    /**
-     * Limit how many GameConfigs to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * GameConfig.Games
-   */
-  export type GameConfig$GamesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Game
-     */
-    select?: GameSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Game
-     */
-    omit?: GameOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GameInclude<ExtArgs> | null
-    where?: GameWhereInput
-    orderBy?: GameOrderByWithRelationInput | GameOrderByWithRelationInput[]
-    cursor?: GameWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: GameScalarFieldEnum | GameScalarFieldEnum[]
-  }
-
-  /**
-   * GameConfig without action
-   */
-  export type GameConfigDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GameConfig
-     */
-    select?: GameConfigSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GameConfig
-     */
-    omit?: GameConfigOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GameConfigInclude<ExtArgs> | null
   }
 
 
@@ -9611,19 +8442,16 @@ export namespace Prisma {
 
   export type TaskConfigMinAggregateOutputType = {
     id: number | null
-    duration: Date | null
     submissionType: $Enums.TaskSubmissionType | null
   }
 
   export type TaskConfigMaxAggregateOutputType = {
     id: number | null
-    duration: Date | null
     submissionType: $Enums.TaskSubmissionType | null
   }
 
   export type TaskConfigCountAggregateOutputType = {
     id: number
-    duration: number
     submissionType: number
     _all: number
   }
@@ -9639,19 +8467,16 @@ export namespace Prisma {
 
   export type TaskConfigMinAggregateInputType = {
     id?: true
-    duration?: true
     submissionType?: true
   }
 
   export type TaskConfigMaxAggregateInputType = {
     id?: true
-    duration?: true
     submissionType?: true
   }
 
   export type TaskConfigCountAggregateInputType = {
     id?: true
-    duration?: true
     submissionType?: true
     _all?: true
   }
@@ -9744,7 +8569,6 @@ export namespace Prisma {
 
   export type TaskConfigGroupByOutputType = {
     id: number
-    duration: Date
     submissionType: $Enums.TaskSubmissionType
     _count: TaskConfigCountAggregateOutputType | null
     _avg: TaskConfigAvgAggregateOutputType | null
@@ -9769,7 +8593,6 @@ export namespace Prisma {
 
   export type TaskConfigSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    duration?: boolean
     submissionType?: boolean
     task?: boolean | TaskConfig$taskArgs<ExtArgs>
     _count?: boolean | TaskConfigCountOutputTypeDefaultArgs<ExtArgs>
@@ -9777,23 +8600,20 @@ export namespace Prisma {
 
   export type TaskConfigSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    duration?: boolean
     submissionType?: boolean
   }, ExtArgs["result"]["taskConfig"]>
 
   export type TaskConfigSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    duration?: boolean
     submissionType?: boolean
   }, ExtArgs["result"]["taskConfig"]>
 
   export type TaskConfigSelectScalar = {
     id?: boolean
-    duration?: boolean
     submissionType?: boolean
   }
 
-  export type TaskConfigOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "duration" | "submissionType", ExtArgs["result"]["taskConfig"]>
+  export type TaskConfigOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "submissionType", ExtArgs["result"]["taskConfig"]>
   export type TaskConfigInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     task?: boolean | TaskConfig$taskArgs<ExtArgs>
     _count?: boolean | TaskConfigCountOutputTypeDefaultArgs<ExtArgs>
@@ -9808,7 +8628,6 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      duration: Date
       submissionType: $Enums.TaskSubmissionType
     }, ExtArgs["result"]["taskConfig"]>
     composites: {}
@@ -10235,7 +9054,6 @@ export namespace Prisma {
    */
   interface TaskConfigFieldRefs {
     readonly id: FieldRef<"TaskConfig", 'Int'>
-    readonly duration: FieldRef<"TaskConfig", 'DateTime'>
     readonly submissionType: FieldRef<"TaskConfig", 'TaskSubmissionType'>
   }
     
@@ -21490,7 +20308,9 @@ export namespace Prisma {
 
   export const EventScalarFieldEnum: {
     id: 'id',
-    link: 'link'
+    link: 'link',
+    startTime: 'startTime',
+    endTime: 'endTime'
   };
 
   export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
@@ -21518,19 +20338,11 @@ export namespace Prisma {
 
   export const GameScalarFieldEnum: {
     id: 'id',
-    eventId: 'eventId',
-    configId: 'configId'
+    duration: 'duration',
+    eventId: 'eventId'
   };
 
   export type GameScalarFieldEnum = (typeof GameScalarFieldEnum)[keyof typeof GameScalarFieldEnum]
-
-
-  export const GameConfigScalarFieldEnum: {
-    id: 'id',
-    duration: 'duration'
-  };
-
-  export type GameConfigScalarFieldEnum = (typeof GameConfigScalarFieldEnum)[keyof typeof GameConfigScalarFieldEnum]
 
 
   export const TaskScalarFieldEnum: {
@@ -21544,7 +20356,6 @@ export namespace Prisma {
 
   export const TaskConfigScalarFieldEnum: {
     id: 'id',
-    duration: 'duration',
     submissionType: 'submissionType'
   };
 
@@ -21814,6 +20625,8 @@ export namespace Prisma {
     NOT?: EventWhereInput | EventWhereInput[]
     id?: StringFilter<"Event"> | string
     link?: StringNullableFilter<"Event"> | string | null
+    startTime?: DateTimeFilter<"Event"> | Date | string
+    endTime?: DateTimeFilter<"Event"> | Date | string
     attendees?: EmailRecordListRelationFilter
     game?: GameListRelationFilter
   }
@@ -21821,6 +20634,8 @@ export namespace Prisma {
   export type EventOrderByWithRelationInput = {
     id?: SortOrder
     link?: SortOrderInput | SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
     attendees?: EmailRecordOrderByRelationAggregateInput
     game?: GameOrderByRelationAggregateInput
   }
@@ -21831,6 +20646,8 @@ export namespace Prisma {
     OR?: EventWhereInput[]
     NOT?: EventWhereInput | EventWhereInput[]
     link?: StringNullableFilter<"Event"> | string | null
+    startTime?: DateTimeFilter<"Event"> | Date | string
+    endTime?: DateTimeFilter<"Event"> | Date | string
     attendees?: EmailRecordListRelationFilter
     game?: GameListRelationFilter
   }, "id">
@@ -21838,6 +20655,8 @@ export namespace Prisma {
   export type EventOrderByWithAggregationInput = {
     id?: SortOrder
     link?: SortOrderInput | SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
     _count?: EventCountOrderByAggregateInput
     _max?: EventMaxOrderByAggregateInput
     _min?: EventMinOrderByAggregateInput
@@ -21849,6 +20668,8 @@ export namespace Prisma {
     NOT?: EventScalarWhereWithAggregatesInput | EventScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Event"> | string
     link?: StringNullableWithAggregatesFilter<"Event"> | string | null
+    startTime?: DateTimeWithAggregatesFilter<"Event"> | Date | string
+    endTime?: DateTimeWithAggregatesFilter<"Event"> | Date | string
   }
 
   export type EmailRecordWhereInput = {
@@ -21973,10 +20794,9 @@ export namespace Prisma {
     OR?: GameWhereInput[]
     NOT?: GameWhereInput | GameWhereInput[]
     id?: IntFilter<"Game"> | number
+    duration?: IntFilter<"Game"> | number
     eventId?: StringFilter<"Game"> | string
-    configId?: IntFilter<"Game"> | number
     event?: XOR<EventScalarRelationFilter, EventWhereInput>
-    config?: XOR<GameConfigScalarRelationFilter, GameConfigWhereInput>
     playerSessions?: UserSessionListRelationFilter
     tasks?: TaskSelectionListRelationFilter
     taskResult?: TaskResultListRelationFilter
@@ -21985,10 +20805,9 @@ export namespace Prisma {
 
   export type GameOrderByWithRelationInput = {
     id?: SortOrder
+    duration?: SortOrder
     eventId?: SortOrder
-    configId?: SortOrder
     event?: EventOrderByWithRelationInput
-    config?: GameConfigOrderByWithRelationInput
     playerSessions?: UserSessionOrderByRelationAggregateInput
     tasks?: TaskSelectionOrderByRelationAggregateInput
     taskResult?: TaskResultOrderByRelationAggregateInput
@@ -22000,10 +20819,9 @@ export namespace Prisma {
     AND?: GameWhereInput | GameWhereInput[]
     OR?: GameWhereInput[]
     NOT?: GameWhereInput | GameWhereInput[]
+    duration?: IntFilter<"Game"> | number
     eventId?: StringFilter<"Game"> | string
-    configId?: IntFilter<"Game"> | number
     event?: XOR<EventScalarRelationFilter, EventWhereInput>
-    config?: XOR<GameConfigScalarRelationFilter, GameConfigWhereInput>
     playerSessions?: UserSessionListRelationFilter
     tasks?: TaskSelectionListRelationFilter
     taskResult?: TaskResultListRelationFilter
@@ -22012,8 +20830,8 @@ export namespace Prisma {
 
   export type GameOrderByWithAggregationInput = {
     id?: SortOrder
+    duration?: SortOrder
     eventId?: SortOrder
-    configId?: SortOrder
     _count?: GameCountOrderByAggregateInput
     _avg?: GameAvgOrderByAggregateInput
     _max?: GameMaxOrderByAggregateInput
@@ -22026,50 +20844,8 @@ export namespace Prisma {
     OR?: GameScalarWhereWithAggregatesInput[]
     NOT?: GameScalarWhereWithAggregatesInput | GameScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Game"> | number
+    duration?: IntWithAggregatesFilter<"Game"> | number
     eventId?: StringWithAggregatesFilter<"Game"> | string
-    configId?: IntWithAggregatesFilter<"Game"> | number
-  }
-
-  export type GameConfigWhereInput = {
-    AND?: GameConfigWhereInput | GameConfigWhereInput[]
-    OR?: GameConfigWhereInput[]
-    NOT?: GameConfigWhereInput | GameConfigWhereInput[]
-    id?: IntFilter<"GameConfig"> | number
-    duration?: DateTimeFilter<"GameConfig"> | Date | string
-    Games?: GameListRelationFilter
-  }
-
-  export type GameConfigOrderByWithRelationInput = {
-    id?: SortOrder
-    duration?: SortOrder
-    Games?: GameOrderByRelationAggregateInput
-  }
-
-  export type GameConfigWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: GameConfigWhereInput | GameConfigWhereInput[]
-    OR?: GameConfigWhereInput[]
-    NOT?: GameConfigWhereInput | GameConfigWhereInput[]
-    duration?: DateTimeFilter<"GameConfig"> | Date | string
-    Games?: GameListRelationFilter
-  }, "id">
-
-  export type GameConfigOrderByWithAggregationInput = {
-    id?: SortOrder
-    duration?: SortOrder
-    _count?: GameConfigCountOrderByAggregateInput
-    _avg?: GameConfigAvgOrderByAggregateInput
-    _max?: GameConfigMaxOrderByAggregateInput
-    _min?: GameConfigMinOrderByAggregateInput
-    _sum?: GameConfigSumOrderByAggregateInput
-  }
-
-  export type GameConfigScalarWhereWithAggregatesInput = {
-    AND?: GameConfigScalarWhereWithAggregatesInput | GameConfigScalarWhereWithAggregatesInput[]
-    OR?: GameConfigScalarWhereWithAggregatesInput[]
-    NOT?: GameConfigScalarWhereWithAggregatesInput | GameConfigScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"GameConfig"> | number
-    duration?: DateTimeWithAggregatesFilter<"GameConfig"> | Date | string
   }
 
   export type TaskWhereInput = {
@@ -22130,14 +20906,12 @@ export namespace Prisma {
     OR?: TaskConfigWhereInput[]
     NOT?: TaskConfigWhereInput | TaskConfigWhereInput[]
     id?: IntFilter<"TaskConfig"> | number
-    duration?: DateTimeFilter<"TaskConfig"> | Date | string
     submissionType?: EnumTaskSubmissionTypeFilter<"TaskConfig"> | $Enums.TaskSubmissionType
     task?: TaskListRelationFilter
   }
 
   export type TaskConfigOrderByWithRelationInput = {
     id?: SortOrder
-    duration?: SortOrder
     submissionType?: SortOrder
     task?: TaskOrderByRelationAggregateInput
   }
@@ -22147,14 +20921,12 @@ export namespace Prisma {
     AND?: TaskConfigWhereInput | TaskConfigWhereInput[]
     OR?: TaskConfigWhereInput[]
     NOT?: TaskConfigWhereInput | TaskConfigWhereInput[]
-    duration?: DateTimeFilter<"TaskConfig"> | Date | string
     submissionType?: EnumTaskSubmissionTypeFilter<"TaskConfig"> | $Enums.TaskSubmissionType
     task?: TaskListRelationFilter
   }, "id">
 
   export type TaskConfigOrderByWithAggregationInput = {
     id?: SortOrder
-    duration?: SortOrder
     submissionType?: SortOrder
     _count?: TaskConfigCountOrderByAggregateInput
     _avg?: TaskConfigAvgOrderByAggregateInput
@@ -22168,7 +20940,6 @@ export namespace Prisma {
     OR?: TaskConfigScalarWhereWithAggregatesInput[]
     NOT?: TaskConfigScalarWhereWithAggregatesInput | TaskConfigScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"TaskConfig"> | number
-    duration?: DateTimeWithAggregatesFilter<"TaskConfig"> | Date | string
     submissionType?: EnumTaskSubmissionTypeWithAggregatesFilter<"TaskConfig"> | $Enums.TaskSubmissionType
   }
 
@@ -22647,6 +21418,8 @@ export namespace Prisma {
   export type EventCreateInput = {
     id?: string
     link?: string | null
+    startTime: Date | string
+    endTime: Date | string
     attendees?: EmailRecordCreateNestedManyWithoutEventsInput
     game?: GameCreateNestedManyWithoutEventInput
   }
@@ -22654,6 +21427,8 @@ export namespace Prisma {
   export type EventUncheckedCreateInput = {
     id?: string
     link?: string | null
+    startTime: Date | string
+    endTime: Date | string
     attendees?: EmailRecordUncheckedCreateNestedManyWithoutEventsInput
     game?: GameUncheckedCreateNestedManyWithoutEventInput
   }
@@ -22661,6 +21436,8 @@ export namespace Prisma {
   export type EventUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
     attendees?: EmailRecordUpdateManyWithoutEventsNestedInput
     game?: GameUpdateManyWithoutEventNestedInput
   }
@@ -22668,6 +21445,8 @@ export namespace Prisma {
   export type EventUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
     attendees?: EmailRecordUncheckedUpdateManyWithoutEventsNestedInput
     game?: GameUncheckedUpdateManyWithoutEventNestedInput
   }
@@ -22675,16 +21454,22 @@ export namespace Prisma {
   export type EventCreateManyInput = {
     id?: string
     link?: string | null
+    startTime: Date | string
+    endTime: Date | string
   }
 
   export type EventUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EventUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EmailRecordCreateInput = {
@@ -22739,7 +21524,7 @@ export namespace Prisma {
 
   export type UserSessionCreateInput = {
     lastActive?: Date | string
-    status: $Enums.SessionStatus
+    status?: $Enums.SessionStatus
     email: EmailRecordCreateNestedOneWithoutSessionsInput
     game: GameCreateNestedOneWithoutPlayerSessionsInput
     tasks?: TaskSubmissionCreateNestedManyWithoutUserSessionInput
@@ -22751,7 +21536,7 @@ export namespace Prisma {
     id?: number
     emailId: string
     lastActive?: Date | string
-    status: $Enums.SessionStatus
+    status?: $Enums.SessionStatus
     gameId: number
     tasks?: TaskSubmissionUncheckedCreateNestedManyWithoutUserSessionInput
     votes?: VoteSubmissionUncheckedCreateNestedManyWithoutUserSessionInput
@@ -22783,7 +21568,7 @@ export namespace Prisma {
     id?: number
     emailId: string
     lastActive?: Date | string
-    status: $Enums.SessionStatus
+    status?: $Enums.SessionStatus
     gameId: number
   }
 
@@ -22801,8 +21586,8 @@ export namespace Prisma {
   }
 
   export type GameCreateInput = {
+    duration?: number
     event: EventCreateNestedOneWithoutGameInput
-    config: GameConfigCreateNestedOneWithoutGamesInput
     playerSessions?: UserSessionCreateNestedManyWithoutGameInput
     tasks?: TaskSelectionCreateNestedManyWithoutGameInput
     taskResult?: TaskResultCreateNestedManyWithoutGameInput
@@ -22811,8 +21596,8 @@ export namespace Prisma {
 
   export type GameUncheckedCreateInput = {
     id?: number
+    duration?: number
     eventId: string
-    configId: number
     playerSessions?: UserSessionUncheckedCreateNestedManyWithoutGameInput
     tasks?: TaskSelectionUncheckedCreateNestedManyWithoutGameInput
     taskResult?: TaskResultUncheckedCreateNestedManyWithoutGameInput
@@ -22820,8 +21605,8 @@ export namespace Prisma {
   }
 
   export type GameUpdateInput = {
+    duration?: IntFieldUpdateOperationsInput | number
     event?: EventUpdateOneRequiredWithoutGameNestedInput
-    config?: GameConfigUpdateOneRequiredWithoutGamesNestedInput
     playerSessions?: UserSessionUpdateManyWithoutGameNestedInput
     tasks?: TaskSelectionUpdateManyWithoutGameNestedInput
     taskResult?: TaskResultUpdateManyWithoutGameNestedInput
@@ -22830,8 +21615,8 @@ export namespace Prisma {
 
   export type GameUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    duration?: IntFieldUpdateOperationsInput | number
     eventId?: StringFieldUpdateOperationsInput | string
-    configId?: IntFieldUpdateOperationsInput | number
     playerSessions?: UserSessionUncheckedUpdateManyWithoutGameNestedInput
     tasks?: TaskSelectionUncheckedUpdateManyWithoutGameNestedInput
     taskResult?: TaskResultUncheckedUpdateManyWithoutGameNestedInput
@@ -22840,54 +21625,18 @@ export namespace Prisma {
 
   export type GameCreateManyInput = {
     id?: number
+    duration?: number
     eventId: string
-    configId: number
   }
 
   export type GameUpdateManyMutationInput = {
-
+    duration?: IntFieldUpdateOperationsInput | number
   }
 
   export type GameUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    duration?: IntFieldUpdateOperationsInput | number
     eventId?: StringFieldUpdateOperationsInput | string
-    configId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type GameConfigCreateInput = {
-    duration: Date | string
-    Games?: GameCreateNestedManyWithoutConfigInput
-  }
-
-  export type GameConfigUncheckedCreateInput = {
-    id?: number
-    duration: Date | string
-    Games?: GameUncheckedCreateNestedManyWithoutConfigInput
-  }
-
-  export type GameConfigUpdateInput = {
-    duration?: DateTimeFieldUpdateOperationsInput | Date | string
-    Games?: GameUpdateManyWithoutConfigNestedInput
-  }
-
-  export type GameConfigUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    duration?: DateTimeFieldUpdateOperationsInput | Date | string
-    Games?: GameUncheckedUpdateManyWithoutConfigNestedInput
-  }
-
-  export type GameConfigCreateManyInput = {
-    id?: number
-    duration: Date | string
-  }
-
-  export type GameConfigUpdateManyMutationInput = {
-    duration?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type GameConfigUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    duration?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TaskCreateInput = {
@@ -22937,45 +21686,38 @@ export namespace Prisma {
   }
 
   export type TaskConfigCreateInput = {
-    duration: Date | string
     submissionType: $Enums.TaskSubmissionType
     task?: TaskCreateNestedManyWithoutConfigInput
   }
 
   export type TaskConfigUncheckedCreateInput = {
     id?: number
-    duration: Date | string
     submissionType: $Enums.TaskSubmissionType
     task?: TaskUncheckedCreateNestedManyWithoutConfigInput
   }
 
   export type TaskConfigUpdateInput = {
-    duration?: DateTimeFieldUpdateOperationsInput | Date | string
     submissionType?: EnumTaskSubmissionTypeFieldUpdateOperationsInput | $Enums.TaskSubmissionType
     task?: TaskUpdateManyWithoutConfigNestedInput
   }
 
   export type TaskConfigUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    duration?: DateTimeFieldUpdateOperationsInput | Date | string
     submissionType?: EnumTaskSubmissionTypeFieldUpdateOperationsInput | $Enums.TaskSubmissionType
     task?: TaskUncheckedUpdateManyWithoutConfigNestedInput
   }
 
   export type TaskConfigCreateManyInput = {
     id?: number
-    duration: Date | string
     submissionType: $Enums.TaskSubmissionType
   }
 
   export type TaskConfigUpdateManyMutationInput = {
-    duration?: DateTimeFieldUpdateOperationsInput | Date | string
     submissionType?: EnumTaskSubmissionTypeFieldUpdateOperationsInput | $Enums.TaskSubmissionType
   }
 
   export type TaskConfigUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    duration?: DateTimeFieldUpdateOperationsInput | Date | string
     submissionType?: EnumTaskSubmissionTypeFieldUpdateOperationsInput | $Enums.TaskSubmissionType
   }
 
@@ -23390,6 +22132,17 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type EmailRecordListRelationFilter = {
     every?: EmailRecordWhereInput
     some?: EmailRecordWhereInput
@@ -23418,16 +22171,22 @@ export namespace Prisma {
   export type EventCountOrderByAggregateInput = {
     id?: SortOrder
     link?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
   }
 
   export type EventMaxOrderByAggregateInput = {
     id?: SortOrder
     link?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
   }
 
   export type EventMinOrderByAggregateInput = {
     id?: SortOrder
     link?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -23466,7 +22225,7 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type DateTimeFilter<$PrismaModel = never> = {
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -23474,7 +22233,10 @@ export namespace Prisma {
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type EventListRelationFilter = {
@@ -23513,20 +22275,6 @@ export namespace Prisma {
     id?: SortOrder
     address?: SortOrder
     createdAt?: SortOrder
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -23652,11 +22400,6 @@ export namespace Prisma {
     isNot?: EventWhereInput
   }
 
-  export type GameConfigScalarRelationFilter = {
-    is?: GameConfigWhereInput
-    isNot?: GameConfigWhereInput
-  }
-
   export type TaskSelectionListRelationFilter = {
     every?: TaskSelectionWhereInput
     some?: TaskSelectionWhereInput
@@ -23689,53 +22432,30 @@ export namespace Prisma {
 
   export type GameCountOrderByAggregateInput = {
     id?: SortOrder
+    duration?: SortOrder
     eventId?: SortOrder
-    configId?: SortOrder
   }
 
   export type GameAvgOrderByAggregateInput = {
     id?: SortOrder
-    configId?: SortOrder
+    duration?: SortOrder
   }
 
   export type GameMaxOrderByAggregateInput = {
     id?: SortOrder
+    duration?: SortOrder
     eventId?: SortOrder
-    configId?: SortOrder
   }
 
   export type GameMinOrderByAggregateInput = {
     id?: SortOrder
+    duration?: SortOrder
     eventId?: SortOrder
-    configId?: SortOrder
   }
 
   export type GameSumOrderByAggregateInput = {
     id?: SortOrder
-    configId?: SortOrder
-  }
-
-  export type GameConfigCountOrderByAggregateInput = {
-    id?: SortOrder
     duration?: SortOrder
-  }
-
-  export type GameConfigAvgOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type GameConfigMaxOrderByAggregateInput = {
-    id?: SortOrder
-    duration?: SortOrder
-  }
-
-  export type GameConfigMinOrderByAggregateInput = {
-    id?: SortOrder
-    duration?: SortOrder
-  }
-
-  export type GameConfigSumOrderByAggregateInput = {
-    id?: SortOrder
   }
 
   export type TaskConfigScalarRelationFilter = {
@@ -23790,7 +22510,6 @@ export namespace Prisma {
 
   export type TaskConfigCountOrderByAggregateInput = {
     id?: SortOrder
-    duration?: SortOrder
     submissionType?: SortOrder
   }
 
@@ -23800,13 +22519,11 @@ export namespace Prisma {
 
   export type TaskConfigMaxOrderByAggregateInput = {
     id?: SortOrder
-    duration?: SortOrder
     submissionType?: SortOrder
   }
 
   export type TaskConfigMinOrderByAggregateInput = {
     id?: SortOrder
-    duration?: SortOrder
     submissionType?: SortOrder
   }
 
@@ -24260,6 +22977,10 @@ export namespace Prisma {
     set?: string | null
   }
 
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
   export type EmailRecordUpdateManyWithoutEventsNestedInput = {
     create?: XOR<EmailRecordCreateWithoutEventsInput, EmailRecordUncheckedCreateWithoutEventsInput> | EmailRecordCreateWithoutEventsInput[] | EmailRecordUncheckedCreateWithoutEventsInput[]
     connectOrCreate?: EmailRecordCreateOrConnectWithoutEventsInput | EmailRecordCreateOrConnectWithoutEventsInput[]
@@ -24338,10 +23059,6 @@ export namespace Prisma {
     connectOrCreate?: UserSessionCreateOrConnectWithoutEmailInput | UserSessionCreateOrConnectWithoutEmailInput[]
     createMany?: UserSessionCreateManyEmailInputEnvelope
     connect?: UserSessionWhereUniqueInput | UserSessionWhereUniqueInput[]
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
   }
 
   export type EventUpdateManyWithoutAttendeesNestedInput = {
@@ -24570,12 +23287,6 @@ export namespace Prisma {
     connect?: EventWhereUniqueInput
   }
 
-  export type GameConfigCreateNestedOneWithoutGamesInput = {
-    create?: XOR<GameConfigCreateWithoutGamesInput, GameConfigUncheckedCreateWithoutGamesInput>
-    connectOrCreate?: GameConfigCreateOrConnectWithoutGamesInput
-    connect?: GameConfigWhereUniqueInput
-  }
-
   export type UserSessionCreateNestedManyWithoutGameInput = {
     create?: XOR<UserSessionCreateWithoutGameInput, UserSessionUncheckedCreateWithoutGameInput> | UserSessionCreateWithoutGameInput[] | UserSessionUncheckedCreateWithoutGameInput[]
     connectOrCreate?: UserSessionCreateOrConnectWithoutGameInput | UserSessionCreateOrConnectWithoutGameInput[]
@@ -24638,14 +23349,6 @@ export namespace Prisma {
     upsert?: EventUpsertWithoutGameInput
     connect?: EventWhereUniqueInput
     update?: XOR<XOR<EventUpdateToOneWithWhereWithoutGameInput, EventUpdateWithoutGameInput>, EventUncheckedUpdateWithoutGameInput>
-  }
-
-  export type GameConfigUpdateOneRequiredWithoutGamesNestedInput = {
-    create?: XOR<GameConfigCreateWithoutGamesInput, GameConfigUncheckedCreateWithoutGamesInput>
-    connectOrCreate?: GameConfigCreateOrConnectWithoutGamesInput
-    upsert?: GameConfigUpsertWithoutGamesInput
-    connect?: GameConfigWhereUniqueInput
-    update?: XOR<XOR<GameConfigUpdateToOneWithWhereWithoutGamesInput, GameConfigUpdateWithoutGamesInput>, GameConfigUncheckedUpdateWithoutGamesInput>
   }
 
   export type UserSessionUpdateManyWithoutGameNestedInput = {
@@ -24758,48 +23461,6 @@ export namespace Prisma {
     update?: PredictionRoundUpdateWithWhereUniqueWithoutGameInput | PredictionRoundUpdateWithWhereUniqueWithoutGameInput[]
     updateMany?: PredictionRoundUpdateManyWithWhereWithoutGameInput | PredictionRoundUpdateManyWithWhereWithoutGameInput[]
     deleteMany?: PredictionRoundScalarWhereInput | PredictionRoundScalarWhereInput[]
-  }
-
-  export type GameCreateNestedManyWithoutConfigInput = {
-    create?: XOR<GameCreateWithoutConfigInput, GameUncheckedCreateWithoutConfigInput> | GameCreateWithoutConfigInput[] | GameUncheckedCreateWithoutConfigInput[]
-    connectOrCreate?: GameCreateOrConnectWithoutConfigInput | GameCreateOrConnectWithoutConfigInput[]
-    createMany?: GameCreateManyConfigInputEnvelope
-    connect?: GameWhereUniqueInput | GameWhereUniqueInput[]
-  }
-
-  export type GameUncheckedCreateNestedManyWithoutConfigInput = {
-    create?: XOR<GameCreateWithoutConfigInput, GameUncheckedCreateWithoutConfigInput> | GameCreateWithoutConfigInput[] | GameUncheckedCreateWithoutConfigInput[]
-    connectOrCreate?: GameCreateOrConnectWithoutConfigInput | GameCreateOrConnectWithoutConfigInput[]
-    createMany?: GameCreateManyConfigInputEnvelope
-    connect?: GameWhereUniqueInput | GameWhereUniqueInput[]
-  }
-
-  export type GameUpdateManyWithoutConfigNestedInput = {
-    create?: XOR<GameCreateWithoutConfigInput, GameUncheckedCreateWithoutConfigInput> | GameCreateWithoutConfigInput[] | GameUncheckedCreateWithoutConfigInput[]
-    connectOrCreate?: GameCreateOrConnectWithoutConfigInput | GameCreateOrConnectWithoutConfigInput[]
-    upsert?: GameUpsertWithWhereUniqueWithoutConfigInput | GameUpsertWithWhereUniqueWithoutConfigInput[]
-    createMany?: GameCreateManyConfigInputEnvelope
-    set?: GameWhereUniqueInput | GameWhereUniqueInput[]
-    disconnect?: GameWhereUniqueInput | GameWhereUniqueInput[]
-    delete?: GameWhereUniqueInput | GameWhereUniqueInput[]
-    connect?: GameWhereUniqueInput | GameWhereUniqueInput[]
-    update?: GameUpdateWithWhereUniqueWithoutConfigInput | GameUpdateWithWhereUniqueWithoutConfigInput[]
-    updateMany?: GameUpdateManyWithWhereWithoutConfigInput | GameUpdateManyWithWhereWithoutConfigInput[]
-    deleteMany?: GameScalarWhereInput | GameScalarWhereInput[]
-  }
-
-  export type GameUncheckedUpdateManyWithoutConfigNestedInput = {
-    create?: XOR<GameCreateWithoutConfigInput, GameUncheckedCreateWithoutConfigInput> | GameCreateWithoutConfigInput[] | GameUncheckedCreateWithoutConfigInput[]
-    connectOrCreate?: GameCreateOrConnectWithoutConfigInput | GameCreateOrConnectWithoutConfigInput[]
-    upsert?: GameUpsertWithWhereUniqueWithoutConfigInput | GameUpsertWithWhereUniqueWithoutConfigInput[]
-    createMany?: GameCreateManyConfigInputEnvelope
-    set?: GameWhereUniqueInput | GameWhereUniqueInput[]
-    disconnect?: GameWhereUniqueInput | GameWhereUniqueInput[]
-    delete?: GameWhereUniqueInput | GameWhereUniqueInput[]
-    connect?: GameWhereUniqueInput | GameWhereUniqueInput[]
-    update?: GameUpdateWithWhereUniqueWithoutConfigInput | GameUpdateWithWhereUniqueWithoutConfigInput[]
-    updateMany?: GameUpdateManyWithWhereWithoutConfigInput | GameUpdateManyWithWhereWithoutConfigInput[]
-    deleteMany?: GameScalarWhereInput | GameScalarWhereInput[]
   }
 
   export type TaskConfigCreateNestedOneWithoutTaskInput = {
@@ -25402,6 +24063,17 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -25456,17 +24128,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -25632,7 +24293,7 @@ export namespace Prisma {
   }
 
   export type GameCreateWithoutEventInput = {
-    config: GameConfigCreateNestedOneWithoutGamesInput
+    duration?: number
     playerSessions?: UserSessionCreateNestedManyWithoutGameInput
     tasks?: TaskSelectionCreateNestedManyWithoutGameInput
     taskResult?: TaskResultCreateNestedManyWithoutGameInput
@@ -25641,7 +24302,7 @@ export namespace Prisma {
 
   export type GameUncheckedCreateWithoutEventInput = {
     id?: number
-    configId: number
+    duration?: number
     playerSessions?: UserSessionUncheckedCreateNestedManyWithoutGameInput
     tasks?: TaskSelectionUncheckedCreateNestedManyWithoutGameInput
     taskResult?: TaskResultUncheckedCreateNestedManyWithoutGameInput
@@ -25704,19 +24365,23 @@ export namespace Prisma {
     OR?: GameScalarWhereInput[]
     NOT?: GameScalarWhereInput | GameScalarWhereInput[]
     id?: IntFilter<"Game"> | number
+    duration?: IntFilter<"Game"> | number
     eventId?: StringFilter<"Game"> | string
-    configId?: IntFilter<"Game"> | number
   }
 
   export type EventCreateWithoutAttendeesInput = {
     id?: string
     link?: string | null
+    startTime: Date | string
+    endTime: Date | string
     game?: GameCreateNestedManyWithoutEventInput
   }
 
   export type EventUncheckedCreateWithoutAttendeesInput = {
     id?: string
     link?: string | null
+    startTime: Date | string
+    endTime: Date | string
     game?: GameUncheckedCreateNestedManyWithoutEventInput
   }
 
@@ -25727,7 +24392,7 @@ export namespace Prisma {
 
   export type UserSessionCreateWithoutEmailInput = {
     lastActive?: Date | string
-    status: $Enums.SessionStatus
+    status?: $Enums.SessionStatus
     game: GameCreateNestedOneWithoutPlayerSessionsInput
     tasks?: TaskSubmissionCreateNestedManyWithoutUserSessionInput
     votes?: VoteSubmissionCreateNestedManyWithoutUserSessionInput
@@ -25737,7 +24402,7 @@ export namespace Prisma {
   export type UserSessionUncheckedCreateWithoutEmailInput = {
     id?: number
     lastActive?: Date | string
-    status: $Enums.SessionStatus
+    status?: $Enums.SessionStatus
     gameId: number
     tasks?: TaskSubmissionUncheckedCreateNestedManyWithoutUserSessionInput
     votes?: VoteSubmissionUncheckedCreateNestedManyWithoutUserSessionInput
@@ -25776,6 +24441,8 @@ export namespace Prisma {
     NOT?: EventScalarWhereInput | EventScalarWhereInput[]
     id?: StringFilter<"Event"> | string
     link?: StringNullableFilter<"Event"> | string | null
+    startTime?: DateTimeFilter<"Event"> | Date | string
+    endTime?: DateTimeFilter<"Event"> | Date | string
   }
 
   export type UserSessionUpsertWithWhereUniqueWithoutEmailInput = {
@@ -25825,8 +24492,8 @@ export namespace Prisma {
   }
 
   export type GameCreateWithoutPlayerSessionsInput = {
+    duration?: number
     event: EventCreateNestedOneWithoutGameInput
-    config: GameConfigCreateNestedOneWithoutGamesInput
     tasks?: TaskSelectionCreateNestedManyWithoutGameInput
     taskResult?: TaskResultCreateNestedManyWithoutGameInput
     predictionRounds?: PredictionRoundCreateNestedManyWithoutGameInput
@@ -25834,8 +24501,8 @@ export namespace Prisma {
 
   export type GameUncheckedCreateWithoutPlayerSessionsInput = {
     id?: number
+    duration?: number
     eventId: string
-    configId: number
     tasks?: TaskSelectionUncheckedCreateNestedManyWithoutGameInput
     taskResult?: TaskResultUncheckedCreateNestedManyWithoutGameInput
     predictionRounds?: PredictionRoundUncheckedCreateNestedManyWithoutGameInput
@@ -25945,8 +24612,8 @@ export namespace Prisma {
   }
 
   export type GameUpdateWithoutPlayerSessionsInput = {
+    duration?: IntFieldUpdateOperationsInput | number
     event?: EventUpdateOneRequiredWithoutGameNestedInput
-    config?: GameConfigUpdateOneRequiredWithoutGamesNestedInput
     tasks?: TaskSelectionUpdateManyWithoutGameNestedInput
     taskResult?: TaskResultUpdateManyWithoutGameNestedInput
     predictionRounds?: PredictionRoundUpdateManyWithoutGameNestedInput
@@ -25954,8 +24621,8 @@ export namespace Prisma {
 
   export type GameUncheckedUpdateWithoutPlayerSessionsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    duration?: IntFieldUpdateOperationsInput | number
     eventId?: StringFieldUpdateOperationsInput | string
-    configId?: IntFieldUpdateOperationsInput | number
     tasks?: TaskSelectionUncheckedUpdateManyWithoutGameNestedInput
     taskResult?: TaskResultUncheckedUpdateManyWithoutGameNestedInput
     predictionRounds?: PredictionRoundUncheckedUpdateManyWithoutGameNestedInput
@@ -26040,12 +24707,16 @@ export namespace Prisma {
   export type EventCreateWithoutGameInput = {
     id?: string
     link?: string | null
+    startTime: Date | string
+    endTime: Date | string
     attendees?: EmailRecordCreateNestedManyWithoutEventsInput
   }
 
   export type EventUncheckedCreateWithoutGameInput = {
     id?: string
     link?: string | null
+    startTime: Date | string
+    endTime: Date | string
     attendees?: EmailRecordUncheckedCreateNestedManyWithoutEventsInput
   }
 
@@ -26054,23 +24725,9 @@ export namespace Prisma {
     create: XOR<EventCreateWithoutGameInput, EventUncheckedCreateWithoutGameInput>
   }
 
-  export type GameConfigCreateWithoutGamesInput = {
-    duration: Date | string
-  }
-
-  export type GameConfigUncheckedCreateWithoutGamesInput = {
-    id?: number
-    duration: Date | string
-  }
-
-  export type GameConfigCreateOrConnectWithoutGamesInput = {
-    where: GameConfigWhereUniqueInput
-    create: XOR<GameConfigCreateWithoutGamesInput, GameConfigUncheckedCreateWithoutGamesInput>
-  }
-
   export type UserSessionCreateWithoutGameInput = {
     lastActive?: Date | string
-    status: $Enums.SessionStatus
+    status?: $Enums.SessionStatus
     email: EmailRecordCreateNestedOneWithoutSessionsInput
     tasks?: TaskSubmissionCreateNestedManyWithoutUserSessionInput
     votes?: VoteSubmissionCreateNestedManyWithoutUserSessionInput
@@ -26081,7 +24738,7 @@ export namespace Prisma {
     id?: number
     emailId: string
     lastActive?: Date | string
-    status: $Enums.SessionStatus
+    status?: $Enums.SessionStatus
     tasks?: TaskSubmissionUncheckedCreateNestedManyWithoutUserSessionInput
     votes?: VoteSubmissionUncheckedCreateNestedManyWithoutUserSessionInput
     predictions?: PredictionResultUncheckedCreateNestedManyWithoutUserSessionInput
@@ -26168,33 +24825,17 @@ export namespace Prisma {
   export type EventUpdateWithoutGameInput = {
     id?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
     attendees?: EmailRecordUpdateManyWithoutEventsNestedInput
   }
 
   export type EventUncheckedUpdateWithoutGameInput = {
     id?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
     attendees?: EmailRecordUncheckedUpdateManyWithoutEventsNestedInput
-  }
-
-  export type GameConfigUpsertWithoutGamesInput = {
-    update: XOR<GameConfigUpdateWithoutGamesInput, GameConfigUncheckedUpdateWithoutGamesInput>
-    create: XOR<GameConfigCreateWithoutGamesInput, GameConfigUncheckedCreateWithoutGamesInput>
-    where?: GameConfigWhereInput
-  }
-
-  export type GameConfigUpdateToOneWithWhereWithoutGamesInput = {
-    where?: GameConfigWhereInput
-    data: XOR<GameConfigUpdateWithoutGamesInput, GameConfigUncheckedUpdateWithoutGamesInput>
-  }
-
-  export type GameConfigUpdateWithoutGamesInput = {
-    duration?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type GameConfigUncheckedUpdateWithoutGamesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    duration?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserSessionUpsertWithWhereUniqueWithoutGameInput = {
@@ -26285,57 +24926,12 @@ export namespace Prisma {
     gameId?: IntFilter<"PredictionRound"> | number
   }
 
-  export type GameCreateWithoutConfigInput = {
-    event: EventCreateNestedOneWithoutGameInput
-    playerSessions?: UserSessionCreateNestedManyWithoutGameInput
-    tasks?: TaskSelectionCreateNestedManyWithoutGameInput
-    taskResult?: TaskResultCreateNestedManyWithoutGameInput
-    predictionRounds?: PredictionRoundCreateNestedManyWithoutGameInput
-  }
-
-  export type GameUncheckedCreateWithoutConfigInput = {
-    id?: number
-    eventId: string
-    playerSessions?: UserSessionUncheckedCreateNestedManyWithoutGameInput
-    tasks?: TaskSelectionUncheckedCreateNestedManyWithoutGameInput
-    taskResult?: TaskResultUncheckedCreateNestedManyWithoutGameInput
-    predictionRounds?: PredictionRoundUncheckedCreateNestedManyWithoutGameInput
-  }
-
-  export type GameCreateOrConnectWithoutConfigInput = {
-    where: GameWhereUniqueInput
-    create: XOR<GameCreateWithoutConfigInput, GameUncheckedCreateWithoutConfigInput>
-  }
-
-  export type GameCreateManyConfigInputEnvelope = {
-    data: GameCreateManyConfigInput | GameCreateManyConfigInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type GameUpsertWithWhereUniqueWithoutConfigInput = {
-    where: GameWhereUniqueInput
-    update: XOR<GameUpdateWithoutConfigInput, GameUncheckedUpdateWithoutConfigInput>
-    create: XOR<GameCreateWithoutConfigInput, GameUncheckedCreateWithoutConfigInput>
-  }
-
-  export type GameUpdateWithWhereUniqueWithoutConfigInput = {
-    where: GameWhereUniqueInput
-    data: XOR<GameUpdateWithoutConfigInput, GameUncheckedUpdateWithoutConfigInput>
-  }
-
-  export type GameUpdateManyWithWhereWithoutConfigInput = {
-    where: GameScalarWhereInput
-    data: XOR<GameUpdateManyMutationInput, GameUncheckedUpdateManyWithoutConfigInput>
-  }
-
   export type TaskConfigCreateWithoutTaskInput = {
-    duration: Date | string
     submissionType: $Enums.TaskSubmissionType
   }
 
   export type TaskConfigUncheckedCreateWithoutTaskInput = {
     id?: number
-    duration: Date | string
     submissionType: $Enums.TaskSubmissionType
   }
 
@@ -26392,13 +24988,11 @@ export namespace Prisma {
   }
 
   export type TaskConfigUpdateWithoutTaskInput = {
-    duration?: DateTimeFieldUpdateOperationsInput | Date | string
     submissionType?: EnumTaskSubmissionTypeFieldUpdateOperationsInput | $Enums.TaskSubmissionType
   }
 
   export type TaskConfigUncheckedUpdateWithoutTaskInput = {
     id?: IntFieldUpdateOperationsInput | number
-    duration?: DateTimeFieldUpdateOperationsInput | Date | string
     submissionType?: EnumTaskSubmissionTypeFieldUpdateOperationsInput | $Enums.TaskSubmissionType
   }
 
@@ -26483,8 +25077,8 @@ export namespace Prisma {
   }
 
   export type GameCreateWithoutTasksInput = {
+    duration?: number
     event: EventCreateNestedOneWithoutGameInput
-    config: GameConfigCreateNestedOneWithoutGamesInput
     playerSessions?: UserSessionCreateNestedManyWithoutGameInput
     taskResult?: TaskResultCreateNestedManyWithoutGameInput
     predictionRounds?: PredictionRoundCreateNestedManyWithoutGameInput
@@ -26492,8 +25086,8 @@ export namespace Prisma {
 
   export type GameUncheckedCreateWithoutTasksInput = {
     id?: number
+    duration?: number
     eventId: string
-    configId: number
     playerSessions?: UserSessionUncheckedCreateNestedManyWithoutGameInput
     taskResult?: TaskResultUncheckedCreateNestedManyWithoutGameInput
     predictionRounds?: PredictionRoundUncheckedCreateNestedManyWithoutGameInput
@@ -26534,8 +25128,8 @@ export namespace Prisma {
   }
 
   export type GameUpdateWithoutTasksInput = {
+    duration?: IntFieldUpdateOperationsInput | number
     event?: EventUpdateOneRequiredWithoutGameNestedInput
-    config?: GameConfigUpdateOneRequiredWithoutGamesNestedInput
     playerSessions?: UserSessionUpdateManyWithoutGameNestedInput
     taskResult?: TaskResultUpdateManyWithoutGameNestedInput
     predictionRounds?: PredictionRoundUpdateManyWithoutGameNestedInput
@@ -26543,8 +25137,8 @@ export namespace Prisma {
 
   export type GameUncheckedUpdateWithoutTasksInput = {
     id?: IntFieldUpdateOperationsInput | number
+    duration?: IntFieldUpdateOperationsInput | number
     eventId?: StringFieldUpdateOperationsInput | string
-    configId?: IntFieldUpdateOperationsInput | number
     playerSessions?: UserSessionUncheckedUpdateManyWithoutGameNestedInput
     taskResult?: TaskResultUncheckedUpdateManyWithoutGameNestedInput
     predictionRounds?: PredictionRoundUncheckedUpdateManyWithoutGameNestedInput
@@ -26567,8 +25161,8 @@ export namespace Prisma {
   }
 
   export type GameCreateWithoutTaskResultInput = {
+    duration?: number
     event: EventCreateNestedOneWithoutGameInput
-    config: GameConfigCreateNestedOneWithoutGamesInput
     playerSessions?: UserSessionCreateNestedManyWithoutGameInput
     tasks?: TaskSelectionCreateNestedManyWithoutGameInput
     predictionRounds?: PredictionRoundCreateNestedManyWithoutGameInput
@@ -26576,8 +25170,8 @@ export namespace Prisma {
 
   export type GameUncheckedCreateWithoutTaskResultInput = {
     id?: number
+    duration?: number
     eventId: string
-    configId: number
     playerSessions?: UserSessionUncheckedCreateNestedManyWithoutGameInput
     tasks?: TaskSelectionUncheckedCreateNestedManyWithoutGameInput
     predictionRounds?: PredictionRoundUncheckedCreateNestedManyWithoutGameInput
@@ -26622,8 +25216,8 @@ export namespace Prisma {
   }
 
   export type GameUpdateWithoutTaskResultInput = {
+    duration?: IntFieldUpdateOperationsInput | number
     event?: EventUpdateOneRequiredWithoutGameNestedInput
-    config?: GameConfigUpdateOneRequiredWithoutGamesNestedInput
     playerSessions?: UserSessionUpdateManyWithoutGameNestedInput
     tasks?: TaskSelectionUpdateManyWithoutGameNestedInput
     predictionRounds?: PredictionRoundUpdateManyWithoutGameNestedInput
@@ -26631,8 +25225,8 @@ export namespace Prisma {
 
   export type GameUncheckedUpdateWithoutTaskResultInput = {
     id?: IntFieldUpdateOperationsInput | number
+    duration?: IntFieldUpdateOperationsInput | number
     eventId?: StringFieldUpdateOperationsInput | string
-    configId?: IntFieldUpdateOperationsInput | number
     playerSessions?: UserSessionUncheckedUpdateManyWithoutGameNestedInput
     tasks?: TaskSelectionUncheckedUpdateManyWithoutGameNestedInput
     predictionRounds?: PredictionRoundUncheckedUpdateManyWithoutGameNestedInput
@@ -26656,7 +25250,7 @@ export namespace Prisma {
 
   export type UserSessionCreateWithoutTasksInput = {
     lastActive?: Date | string
-    status: $Enums.SessionStatus
+    status?: $Enums.SessionStatus
     email: EmailRecordCreateNestedOneWithoutSessionsInput
     game: GameCreateNestedOneWithoutPlayerSessionsInput
     votes?: VoteSubmissionCreateNestedManyWithoutUserSessionInput
@@ -26667,7 +25261,7 @@ export namespace Prisma {
     id?: number
     emailId: string
     lastActive?: Date | string
-    status: $Enums.SessionStatus
+    status?: $Enums.SessionStatus
     gameId: number
     votes?: VoteSubmissionUncheckedCreateNestedManyWithoutUserSessionInput
     predictions?: PredictionResultUncheckedCreateNestedManyWithoutUserSessionInput
@@ -26899,7 +25493,7 @@ export namespace Prisma {
 
   export type UserSessionCreateWithoutVotesInput = {
     lastActive?: Date | string
-    status: $Enums.SessionStatus
+    status?: $Enums.SessionStatus
     email: EmailRecordCreateNestedOneWithoutSessionsInput
     game: GameCreateNestedOneWithoutPlayerSessionsInput
     tasks?: TaskSubmissionCreateNestedManyWithoutUserSessionInput
@@ -26910,7 +25504,7 @@ export namespace Prisma {
     id?: number
     emailId: string
     lastActive?: Date | string
-    status: $Enums.SessionStatus
+    status?: $Enums.SessionStatus
     gameId: number
     tasks?: TaskSubmissionUncheckedCreateNestedManyWithoutUserSessionInput
     predictions?: PredictionResultUncheckedCreateNestedManyWithoutUserSessionInput
@@ -26986,8 +25580,8 @@ export namespace Prisma {
   }
 
   export type GameCreateWithoutPredictionRoundsInput = {
+    duration?: number
     event: EventCreateNestedOneWithoutGameInput
-    config: GameConfigCreateNestedOneWithoutGamesInput
     playerSessions?: UserSessionCreateNestedManyWithoutGameInput
     tasks?: TaskSelectionCreateNestedManyWithoutGameInput
     taskResult?: TaskResultCreateNestedManyWithoutGameInput
@@ -26995,8 +25589,8 @@ export namespace Prisma {
 
   export type GameUncheckedCreateWithoutPredictionRoundsInput = {
     id?: number
+    duration?: number
     eventId: string
-    configId: number
     playerSessions?: UserSessionUncheckedCreateNestedManyWithoutGameInput
     tasks?: TaskSelectionUncheckedCreateNestedManyWithoutGameInput
     taskResult?: TaskResultUncheckedCreateNestedManyWithoutGameInput
@@ -27039,8 +25633,8 @@ export namespace Prisma {
   }
 
   export type GameUpdateWithoutPredictionRoundsInput = {
+    duration?: IntFieldUpdateOperationsInput | number
     event?: EventUpdateOneRequiredWithoutGameNestedInput
-    config?: GameConfigUpdateOneRequiredWithoutGamesNestedInput
     playerSessions?: UserSessionUpdateManyWithoutGameNestedInput
     tasks?: TaskSelectionUpdateManyWithoutGameNestedInput
     taskResult?: TaskResultUpdateManyWithoutGameNestedInput
@@ -27048,8 +25642,8 @@ export namespace Prisma {
 
   export type GameUncheckedUpdateWithoutPredictionRoundsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    duration?: IntFieldUpdateOperationsInput | number
     eventId?: StringFieldUpdateOperationsInput | string
-    configId?: IntFieldUpdateOperationsInput | number
     playerSessions?: UserSessionUncheckedUpdateManyWithoutGameNestedInput
     tasks?: TaskSelectionUncheckedUpdateManyWithoutGameNestedInput
     taskResult?: TaskResultUncheckedUpdateManyWithoutGameNestedInput
@@ -27153,7 +25747,7 @@ export namespace Prisma {
 
   export type UserSessionCreateWithoutPredictionsInput = {
     lastActive?: Date | string
-    status: $Enums.SessionStatus
+    status?: $Enums.SessionStatus
     email: EmailRecordCreateNestedOneWithoutSessionsInput
     game: GameCreateNestedOneWithoutPlayerSessionsInput
     tasks?: TaskSubmissionCreateNestedManyWithoutUserSessionInput
@@ -27164,7 +25758,7 @@ export namespace Prisma {
     id?: number
     emailId: string
     lastActive?: Date | string
-    status: $Enums.SessionStatus
+    status?: $Enums.SessionStatus
     gameId: number
     tasks?: TaskSubmissionUncheckedCreateNestedManyWithoutUserSessionInput
     votes?: VoteSubmissionUncheckedCreateNestedManyWithoutUserSessionInput
@@ -27241,7 +25835,7 @@ export namespace Prisma {
 
   export type GameCreateManyEventInput = {
     id?: number
-    configId: number
+    duration?: number
   }
 
   export type EmailRecordUpdateWithoutEventsInput = {
@@ -27265,7 +25859,7 @@ export namespace Prisma {
   }
 
   export type GameUpdateWithoutEventInput = {
-    config?: GameConfigUpdateOneRequiredWithoutGamesNestedInput
+    duration?: IntFieldUpdateOperationsInput | number
     playerSessions?: UserSessionUpdateManyWithoutGameNestedInput
     tasks?: TaskSelectionUpdateManyWithoutGameNestedInput
     taskResult?: TaskResultUpdateManyWithoutGameNestedInput
@@ -27274,7 +25868,7 @@ export namespace Prisma {
 
   export type GameUncheckedUpdateWithoutEventInput = {
     id?: IntFieldUpdateOperationsInput | number
-    configId?: IntFieldUpdateOperationsInput | number
+    duration?: IntFieldUpdateOperationsInput | number
     playerSessions?: UserSessionUncheckedUpdateManyWithoutGameNestedInput
     tasks?: TaskSelectionUncheckedUpdateManyWithoutGameNestedInput
     taskResult?: TaskResultUncheckedUpdateManyWithoutGameNestedInput
@@ -27283,31 +25877,37 @@ export namespace Prisma {
 
   export type GameUncheckedUpdateManyWithoutEventInput = {
     id?: IntFieldUpdateOperationsInput | number
-    configId?: IntFieldUpdateOperationsInput | number
+    duration?: IntFieldUpdateOperationsInput | number
   }
 
   export type UserSessionCreateManyEmailInput = {
     id?: number
     lastActive?: Date | string
-    status: $Enums.SessionStatus
+    status?: $Enums.SessionStatus
     gameId: number
   }
 
   export type EventUpdateWithoutAttendeesInput = {
     id?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
     game?: GameUpdateManyWithoutEventNestedInput
   }
 
   export type EventUncheckedUpdateWithoutAttendeesInput = {
     id?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
     game?: GameUncheckedUpdateManyWithoutEventNestedInput
   }
 
   export type EventUncheckedUpdateManyWithoutAttendeesInput = {
     id?: StringFieldUpdateOperationsInput | string
     link?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserSessionUpdateWithoutEmailInput = {
@@ -27404,7 +26004,7 @@ export namespace Prisma {
     id?: number
     emailId: string
     lastActive?: Date | string
-    status: $Enums.SessionStatus
+    status?: $Enums.SessionStatus
   }
 
   export type TaskSelectionCreateManyGameInput = {
@@ -27482,33 +26082,6 @@ export namespace Prisma {
 
   export type PredictionRoundUncheckedUpdateManyWithoutGameInput = {
     id?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type GameCreateManyConfigInput = {
-    id?: number
-    eventId: string
-  }
-
-  export type GameUpdateWithoutConfigInput = {
-    event?: EventUpdateOneRequiredWithoutGameNestedInput
-    playerSessions?: UserSessionUpdateManyWithoutGameNestedInput
-    tasks?: TaskSelectionUpdateManyWithoutGameNestedInput
-    taskResult?: TaskResultUpdateManyWithoutGameNestedInput
-    predictionRounds?: PredictionRoundUpdateManyWithoutGameNestedInput
-  }
-
-  export type GameUncheckedUpdateWithoutConfigInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    eventId?: StringFieldUpdateOperationsInput | string
-    playerSessions?: UserSessionUncheckedUpdateManyWithoutGameNestedInput
-    tasks?: TaskSelectionUncheckedUpdateManyWithoutGameNestedInput
-    taskResult?: TaskResultUncheckedUpdateManyWithoutGameNestedInput
-    predictionRounds?: PredictionRoundUncheckedUpdateManyWithoutGameNestedInput
-  }
-
-  export type GameUncheckedUpdateManyWithoutConfigInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    eventId?: StringFieldUpdateOperationsInput | string
   }
 
   export type TaskSubmissionCreateManyTaskInput = {
