@@ -122,7 +122,9 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.EventScalarFieldEnum = {
   id: 'id',
-  link: 'link'
+  link: 'link',
+  startTime: 'startTime',
+  endTime: 'endTime'
 };
 
 exports.Prisma.EmailRecordScalarFieldEnum = {
@@ -141,13 +143,8 @@ exports.Prisma.UserSessionScalarFieldEnum = {
 
 exports.Prisma.GameScalarFieldEnum = {
   id: 'id',
-  eventId: 'eventId',
-  configId: 'configId'
-};
-
-exports.Prisma.GameConfigScalarFieldEnum = {
-  id: 'id',
-  duration: 'duration'
+  duration: 'duration',
+  eventId: 'eventId'
 };
 
 exports.Prisma.TaskScalarFieldEnum = {
@@ -158,7 +155,6 @@ exports.Prisma.TaskScalarFieldEnum = {
 
 exports.Prisma.TaskConfigScalarFieldEnum = {
   id: 'id',
-  duration: 'duration',
   submissionType: 'submissionType'
 };
 
@@ -273,7 +269,6 @@ exports.Prisma.ModelName = {
   EmailRecord: 'EmailRecord',
   UserSession: 'UserSession',
   Game: 'Game',
-  GameConfig: 'GameConfig',
   Task: 'Task',
   TaskConfig: 'TaskConfig',
   TaskSelection: 'TaskSelection',
