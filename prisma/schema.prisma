@@ -1,0 +1,187 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Event {
+  id        String        @id @default(cuid())
+  link      String?
+  attendees EmailRecord[]
+  game      Game[]
+}
+
+model EmailRecord {
+  id        String        @id @default(cuid())
+  address   String        @unique
+  createdAt DateTime      @default(now())
+  events    Event[]
+  sessions  UserSession[]
+}
+
+enum SessionStatus {
+  Registered
+  Active
+  Eliminated
+  Completed
+}
+
+enum TaskSubmissionType {
+  TextAnswer
+  ImageUpload
+  SocialLink
+}
+
+enum VoteOptionsType {
+  W
+  L
+}
+
+model UserSession {
+  id          Int                @id @default(autoincrement())
+  email       EmailRecord        @relation(fields: [emailId], references: [id])
+  emailId     String             
+  lastActive  DateTime           @updatedAt
+  status      SessionStatus
+  gameId      Int
+  game        Game               @relation(fields: [gameId], references: [id])
+  tasks       TaskSubmission[]
+  votes       VoteSubmission[]
+  predictions PredictionResult[]
+}
+
+model Game {
+  id               Int               @id @default(autoincrement())
+  event            Event             @relation(fields: [eventId], references: [id])
+  eventId          String
+  config           GameConfig        @relation(fields: [configId], references: [id])
+  configId         Int
+  playerSessions   UserSession[]
+  tasks            TaskSelection[]
+  taskResult       TaskResult[]
+  predictionRounds PredictionRound[]
+}
+
+model GameConfig {
+  id       Int      @id @default(autoincrement())
+  Games    Game[]
+  duration DateTime
+}
+
+model Task {
+  id          Int              @id @default(autoincrement())
+  config      TaskConfig       @relation(fields: [configId], references: [id])
+  configId    Int              
+  prompt      String
+  selected    TaskSelection[]
+  submissions TaskSubmission[]
+}
+
+model TaskConfig {
+  id             Int                @id @default(autoincrement())
+  duration       DateTime
+  task           Task[]
+  submissionType TaskSubmissionType
+}
+
+model TaskSelection {
+  id     Int    @id @default(autoincrement())
+  game   Game   @relation(fields: [gameId], references: [id])
+  gameId Int    
+  task   Task[]
+}
+
+model TaskResult {
+  id          Int              @id @default(autoincrement())
+  game        Game             @relation(fields: [gameId], references: [id])
+  gameId      Int              
+  submissions TaskSubmission[]
+}
+
+model TaskSubmission {
+  userSession   UserSession @relation(fields: [userSessionId], references: [id])
+  userSessionId Int
+  task          Task        @relation(fields: [taskId], references: [id])
+  taskId        Int         
+  taskResult    TaskResult  @relation(fields: [taskResultId], references: [id])
+  taskResultId  Int
+  submittedAt   DateTime    @default(now())
+
+  @@id([userSessionId, taskId, taskResultId])
+}
+
+model VoteContent {
+  id       Int        @id @default(autoincrement())
+  question String
+  items    VoteItem[]
+}
+
+model VoteItem {
+  id          Int              @id @default(autoincrement())
+  content     VoteContent      @relation(fields: [contentId], references: [id])
+  contentId   Int
+  submissions VoteSubmission[]
+}
+
+model VoteSubmission {
+  userSession   UserSession     @relation(fields: [userSessionId], references: [id])
+  userSessionId Int
+  item          VoteItem        @relation(fields: [itemId], references: [id])
+  itemId        Int
+  vote          VoteOptionsType
+
+  @@id([userSessionId, itemId])
+}
+
+model PredictionRound {
+  id      Int                @id @default(autoincrement())
+  game    Game               @relation(fields: [gameId], references: [id])
+  gameId  Int
+  results PredictionResult[]
+}
+
+model PredictionConfig {
+  id         Int                  @id @default(autoincrement())
+  signal     SignalType 
+  difficulty SignalTolerance
+  questions  PredictionQuestion[]
+}
+
+model PredictionQuestion {
+  id                 Int              @id @default(autoincrement())
+  predictionConfig   PredictionConfig @relation(fields: [predictionConfigId], references: [id])
+  predictionConfigId Int
+}
+
+model PredictionResult {
+  userSession   UserSession       @relation(fields: [userSessionId], references: [id])
+  userSessionId Int
+  outcome       PredictionOutcome
+  round         PredictionRound   @relation(fields: [roundId], references: [id])
+  roundId       Int
+
+  @@id([userSessionId, roundId])
+}
+
+enum PredictionOutcome {
+  Hit
+  Miss
+  TBD
+  NoAnswer
+}
+
+enum SignalType {
+  Volume
+  Mentions
+  Sentiment
+}
+
+enum SignalTolerance {
+  Low
+  Mid
+  High
+}
